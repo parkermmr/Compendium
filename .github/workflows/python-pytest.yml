@@ -1,4 +1,4 @@
-name: Python Tests
+name: Python Tests with Poetry
 
 on:
   workflow_call:
@@ -22,8 +22,17 @@ jobs:
         with:
           python-version: ${{ inputs.python-version }}
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry (Ensure Virtualenvs are Created Inside Project)
+        run: poetry config virtualenvs.in-project true
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction --no-root
 
       - name: Run Tests
-        run: pytest
+        run: poetry run pytest
+
