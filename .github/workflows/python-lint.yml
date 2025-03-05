@@ -37,7 +37,7 @@ jobs:
         run: mkdir -p reports/flake8
 
       - name: Run Flake8 Linter (Generate Report)
-        run: poetry run flake8 --format=html --htmldir=reports/flake8
+        run: poetry run flake8 --exclude .venv --format=html --htmldir=reports/flake8
 
       - name: Run Black Formatter Check
         run: poetry run black --check --diff .
