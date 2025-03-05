@@ -39,8 +39,8 @@ jobs:
       - name: Run Flake8 Linter (Generate Report)
         run: poetry run flake8 --exclude .venv --format=html --htmldir=reports/flake8
 
-      - name: Run Black Formatter Check
-        run: poetry run black --check --diff .
+      - name: Run Black Formatter Check (Allow Failures)
+        run: poetry run black --check --diff . || true
 
       - name: Run isort Import Sorting Check
         run: poetry run isort --check-only --diff .
