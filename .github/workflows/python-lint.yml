@@ -33,6 +33,9 @@ jobs:
       - name: Install Linter & Formatters
         run: poetry add --dev flake8 flake8-html black isort
 
+      - name: Create Reports Directory
+        run: mkdir -p reports/flake8
+
       - name: Run Flake8 Linter (Generate Report)
         run: poetry run flake8 --format=html --htmldir=reports/flake8
 
@@ -48,4 +51,3 @@ jobs:
           name: lint-report
           path: reports/flake8/
           retention-days: 7
-
