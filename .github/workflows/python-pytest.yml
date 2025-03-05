@@ -6,9 +6,6 @@ on:
       python-version:
         required: true
         type: string
-    secrets:
-      GITHUB_TOKEN:
-        required: true
 
 jobs:
   test:
@@ -35,4 +32,5 @@ jobs:
 
       - name: Run Tests
         run: poetry run pytest
+
 
