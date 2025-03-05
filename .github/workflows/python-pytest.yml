@@ -63,3 +63,11 @@ jobs:
           name: coverage-html
           path: reports/htmlcov/
           retention-days: 7
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: reports/coverage.xml
+          fail_ci_if_error: true
+          verbose: true
