@@ -1,4 +1,4 @@
-name: Python Linting
+name: Python Linting with Flake8
 
 on:
   workflow_call:
@@ -19,8 +19,33 @@ jobs:
         with:
           python-version: ${{ inputs.python-version }}
 
-      - name: Install linter
-        run: pip install flake8
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Run Flake8 Linter
-        run: flake8 .
+      - name: Configure Poetry (Ensure Virtualenvs are Created Inside Project)
+        run: poetry config virtualenvs.in-project true
+
+      - name: Install Dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Install Linter & Formatters
+        run: poetry add --dev flake8 flake8-html black isort
+
+      - name: Run Flake8 Linter (Generate Report)
+        run: poetry run flake8 --format=html --htmldir=reports/flake8
+
+      - name: Run Black Formatter Check
+        run: poetry run black --check --diff .
+
+      - name: Run isort Import Sorting Check
+        run: poetry run isort --check-only --diff .
+
+      - name: Upload Linting Results (Flake8 HTML Report)
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-report
+          path: reports/flake8/
+          retention-days: 7
+
