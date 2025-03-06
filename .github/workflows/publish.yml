@@ -17,3 +17,5 @@ jobs:
       - uses: parkermmr/compendium/jobs/release/publish-docs@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          sha: ${{ github.sha }}
+          ref_name: ${{ github.ref }}
