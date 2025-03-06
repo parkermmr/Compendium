@@ -24,7 +24,7 @@ runs:
 
     - name: Login to DockerHub
       shell: bash
-      run: echo "${{ inputs.dockerhub-password }}" | docker login -u "${{ inputs.dockerhub-username }}" --password-stdin
+      run: echo ${{ inputs.dockerhub-password }} | docker login -u ${{ inputs.dockerhub-username }} --password-stdin
 
     - name: Push Docker Image
       shell: bash
