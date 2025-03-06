@@ -1,0 +1,31 @@
+name: "Build Docker Image"
+description: "Builds and pushes a Docker image to DockerHub"
+
+inputs:
+  image-name:
+    description: "Name of the Docker image to build (including tag)."
+    required: true
+  dockerhub-username:
+    description: "DockerHub username"
+    required: true
+  dockerhub-password:
+    description: "DockerHub password"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build Docker Image
+      shell: bash
+      run: docker build -t ${{ inputs.image-name }} .
+
+    - name: Login to DockerHub
+      shell: bash
+      run: echo "${{ inputs.dockerhub-password }}" | docker login -u "${{ inputs.dockerhub-username }}" --password-stdin
+
+    - name: Push Docker Image
+      shell: bash
+      run: docker push ${{ inputs.image-name }}

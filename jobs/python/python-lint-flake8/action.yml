@@ -1,0 +1,60 @@
+name: "Python Linting with Flake8"
+description: "Runs flake8, black, isort on a Python project, uploading artifacts"
+
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: true
+    default: "3.11"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install Poetry
+      shell: bash
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Configure Poetry
+      shell: bash
+      run: poetry config virtualenvs.in-project true
+
+    - name: Install Dependencies
+      shell: bash
+      run: poetry install --no-interaction --no-root
+
+    - name: Install Linter & Formatters
+      shell: bash
+      run: poetry add --dev flake8 flake8-html black isort
+
+    - name: Create Reports Directory
+      shell: bash
+      run: mkdir -p reports/flake8
+
+    - name: Run Flake8 Linter (Generate Report)
+      shell: bash
+      run: poetry run flake8 --exclude .venv --format=html --htmldir=reports/flake8
+
+    - name: Run Black Formatter Check (Allow Failures)
+      shell: bash
+      run: poetry run black --check --diff . || true
+
+    - name: Run isort Import Sorting Check
+      shell: bash
+      run: poetry run isort --check-only --diff .
+
+    - name: Upload Linting Results (Flake8 HTML Report)
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-report
+        path: reports/flake8/
+        retention-days: 7

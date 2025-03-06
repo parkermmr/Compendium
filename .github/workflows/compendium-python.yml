@@ -1,0 +1,32 @@
+name: Python Linting with Flake8
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: false
+        type: string
+        default: "3.11"
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/python/python-poetry-flake8@v1
+        with:
+          python-version: ${{ github.event.inputs.python-version }}
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/python/python-poetry-pytest@v1
+        with:
+          python-version: ${{ github.event.inputs.python-version }}
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/docker/build@v1
+        with:
+          image-name: "my-docker-image:latest"
+          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
