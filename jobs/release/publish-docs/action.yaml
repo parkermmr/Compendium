@@ -1,0 +1,50 @@
+name: "Deploy MkDocs to GitHub Pages"
+description: "Builds and deploys MkDocs site to a subdirectory on GitHub Pages using Poetry"
+
+inputs:
+  python-version:
+    description: "Python version"
+    required: false
+    default: "3.11"
+  github-token:
+    description: "GitHub Token for deployment"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install Poetry
+      shell: bash
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Configure Poetry
+      shell: bash
+      run: poetry config virtualenvs.in-project true
+
+    - name: Install Dependencies
+      shell: bash
+      run: poetry install --no-interaction --no-root
+
+    - name: Ensure MkDocs & Material Theme are Installed
+      shell: bash
+      run: poetry add mkdocs mkdocs-material
+
+    - name: Build MkDocs Site (to pages subdirectory)
+      shell: bash
+      run: poetry run mkdocs build --clean --site-dir site/pages
+
+    - name: Deploy MkDocs to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ inputs.github-token }}
+        publish_dir: ./site
