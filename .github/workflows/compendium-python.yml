@@ -12,7 +12,7 @@ jobs:
   Lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: parkermmr/compendium/jobs/python/python-poetry-flake8@v1
+      - uses: parkermmr/compendium/jobs/python/python-lint-flake8@v1
         with:
           python-version: ${{ github.event.inputs.python-version }}
   Test:
