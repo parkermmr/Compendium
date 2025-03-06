@@ -35,7 +35,7 @@ jobs:
   Compile:
     runs-on: ubuntu-latest
     steps:
-      - uses: parkermmr/compendium/jobs/java/maven/build@v1
+      - uses: parkermmr/compendium/jobs/java/maven/compile@v1
         with:
           java-version: ${{ inputs.java-version }}
           distribution: ${{ inputs.distribution }}
