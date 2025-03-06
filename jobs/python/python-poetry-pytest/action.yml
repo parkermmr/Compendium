@@ -73,9 +73,9 @@ runs:
 
     - name: "Upload coverage to Codecov"
       if: ${{ inputs.codecov_token }}
-      shell: bash
-      run: |
-        pip install codecov
-        codecov --token="${CODECOV_TOKEN}"
-      env:
-        CODECOV_TOKEN: ${{ inputs.codecov_token }}
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ inputs.codecov_token }}
+        files: reports/coverage.xml
+        fail_ci_if_error: true
+        verbose: true
