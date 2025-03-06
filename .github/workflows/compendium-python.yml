@@ -23,6 +23,7 @@ jobs:
           python-version: ${{ github.event.inputs.python-version }}
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
   Build:
+    needs: ["Lint", "Test"]
     runs-on: ubuntu-latest
     steps:
       - uses: parkermmr/compendium/jobs/docker/build@v1
