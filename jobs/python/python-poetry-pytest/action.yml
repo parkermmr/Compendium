@@ -1,0 +1,77 @@
+name: "Python Tests with Poetry"
+description: "Runs tests with Poetry, coverage, and Codecov"
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: true
+    default: "3.11"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install Poetry
+      shell: bash
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Configure Poetry
+      shell: bash
+      run: poetry config virtualenvs.in-project true
+
+    - name: Install Dependencies
+      shell: bash
+      run: poetry install --no-interaction --no-root
+
+    - name: Ensure pytest-cov is Installed
+      shell: bash
+      run: poetry add --dev pytest pytest-cov
+
+    - name: Create Reports Directory
+      shell: bash
+      run: mkdir -p reports/htmlcov reports/
+
+    - name: Run Tests with Coverage
+      shell: bash
+      run: |
+        poetry run pytest --junitxml=reports/test-results.xml --cov=. \
+                          --cov-report=xml:reports/coverage.xml \
+                          --cov-report=html:reports/htmlcov \
+                          --cov-report=term
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: reports/test-results.xml
+        retention-days: 7
+
+    - name: Upload Coverage Report (XML)
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-xml
+        path: reports/coverage.xml
+        retention-days: 7
+
+    - name: Upload Coverage Report (HTML)
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-html
+        path: reports/htmlcov/
+        retention-days: 7
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: reports/coverage.xml
+        fail_ci_if_error: true
+        verbose: true
