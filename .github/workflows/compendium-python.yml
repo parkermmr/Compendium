@@ -27,6 +27,6 @@ jobs:
     steps:
       - uses: parkermmr/compendium/jobs/docker/build@v1
         with:
-          image-name: "my-docker-image:latest"
+          image-name: "r3dsc0rp10n/test-image:latest"
           dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
