@@ -1,0 +1,66 @@
+name: Publish Javadocs
+description: 'Publish Javadocs to GitHub Pages'
+
+inputs:
+  sha:
+    required: true
+    description: 'The commit SHA'
+  ref-name:
+    required: true
+    description: 'The branch name'
+  java-version:
+    required: true
+    description: 'The Java version to use'
+  distribution:
+    required: true
+    description: 'The Java distribution to use'
+  github-token:
+    required: true
+    description: 'The GitHub token'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK (Amazon Corretto)
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ inputs.distribution }}
+        java-version: ${{ inputs.java-version }}
+
+    - name: Generate Javadocs for all modules
+      shell: bash
+      run: |
+        mvn clean package source:jar javadoc:jar -DskipTests -Dpmd.skip=true -Dcheckstyle.skip=true
+
+    - name: Configure Git for gh-pages
+      shell: bash
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+
+    - name: Clone gh-pages branch
+      shell: bash
+      run: |
+        git clone --depth=1 --branch gh-pages https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }} gh-pages
+
+    - name: Copy Javadocs to gh-pages root
+      shell: bash
+      run: |
+        cp -a target/site/apidocs/. gh-pages/
+
+    - name: Create .nojekyll in gh-pages
+      shell: bash
+      run: |
+        touch gh-pages/.nojekyll
+
+    - name: Deploy to GitHub Pages
+      shell: bash
+      run: |
+        cd gh-pages
+        git add .
+        git commit -m "Deploy Javadocs from ${{ inputs.sha }} on branch ${{ inputs.ref-name }}"
+        git push origin gh-pages

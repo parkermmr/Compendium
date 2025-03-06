@@ -1,0 +1,25 @@
+name: Deploy Tag
+description: 'Tag the successful deployment commit'
+
+inputs:
+  ref-name:
+    required: true
+    description: 'The branch name'
+  sha:
+    required: true
+    description: 'The commit SHA'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Tag Successful Commit
+      shell: bash
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git tag -a "deployed_${{ inputs.ref-name }}_${{ inputs.sha }}" -m "Deployment tag for ${{ inputs.sha }}"
+        git push origin "deployed_${{ inputs.ref-name }}_${{ inputs.sha }}"

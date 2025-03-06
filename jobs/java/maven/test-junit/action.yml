@@ -1,0 +1,42 @@
+name: Run Unit Tests
+description: 'Run unit tests with JUnit and Maven.'
+
+inputs:
+  java-version:
+    description: 'The version of Java to use.'
+    required: true
+    default: '17'
+  distribution:
+    description: 'The distribution of Java to use.'
+    required: true
+    default: 'corretto'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ inputs.distribution }}
+        java-version: ${{ inputs.java-version }}
+
+    - name: Cache Maven packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+    - name: Build and run tests
+      shell: bash
+      id: junit
+      run: mvn test
+
+    - name: Archive test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: junit-results
+        path: target/surefire-reports

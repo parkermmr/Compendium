@@ -1,0 +1,72 @@
+name: Java Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        required: false
+        type: string
+        default: "17"
+      distribution:
+        required: false
+        type: string
+        default: "corretto"
+      ref-name:
+        required: false
+        type: string
+        default: "main"
+      sha:
+        required: false
+        type: string
+        default: "main"
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/java/maven/lint-checkstyle@v1
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: ${{ inputs.distribution }}
+
+  Compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/java/maven/build@v1
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: ${{ inputs.distribution }}
+
+  Test:
+    needs: ["Compile", "Lint"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/java/maven/test-junit@v1
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: ${{ inputs.distribution }}
+    
+  Tag:
+    needs: ["Test"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/java/maven/deploy-tag@v1
+        with:
+          ref-name: ${{ inputs.ref-name }}
+          sha: ${{ inputs.sha }}
+
+  Document:
+    needs: ["Test"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/java/maven/javadocs-publish@v1
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: ${{ inputs.distribution }}
+          ref-name: ${{ inputs.ref-name }}
+          sha: ${{ inputs.sha }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  
