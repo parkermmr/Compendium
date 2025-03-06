@@ -27,7 +27,7 @@ jobs:
   Lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: parkermmr/compendium/jobs/java/maven/lint-checkstyle@v1
+      - uses: parkermmr/compendium/jobs/java/lint-checkstyle@v1
         with:
           java-version: ${{ inputs.java-version }}
           distribution: ${{ inputs.distribution }}
@@ -53,7 +53,7 @@ jobs:
     needs: ["Test"]
     runs-on: ubuntu-latest
     steps:
-      - uses: parkermmr/compendium/jobs/java/maven/deploy-tag@v1
+      - uses: parkermmr/compendium/jobs/release/deploy-tag@v1
         with:
           ref-name: ${{ inputs.ref-name }}
           sha: ${{ inputs.sha }}

@@ -1,0 +1,57 @@
+name: Build
+description: Build the project with Gradle.
+
+inputs:
+  gradle-version:
+    description: 'The version of Gradle to use.'
+    required: false
+    default: '7.2'
+  gradle-args:
+    description: 'Arguments to pass to Gradle.'
+    required: false
+    default: 'build --no-daemon'
+  java-version:
+    description: 'The version of Java to use.'
+    required: false
+    default: '17'
+  distribution:
+    description: 'The distribution of Java to use.'
+    required: false
+    default: 'adopt'
+  artifact-name:
+    description: 'The name of the artifact to upload.'
+    required: false
+    default: 'SNAPSHOT'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ inputs.distribution }}
+        java-version: ${{ inputs.java-version }}
+        cache: 'gradle'
+
+    - name: Build with gradle
+      shell: bash
+      id: build
+      run: ./gradlew ${{ inputs.gradle-args }}
+
+    - name: Create Dynamic Tag
+      id: create_tag
+      shell: pwsh
+      run: |
+        $BRANCH_NAME = $env:GITHUB_REF -replace '^refs/heads/', ''
+        $COMMIT_HASH = (git rev-parse --short HEAD).Trim()
+        echo "TAG_NAME=release-$BRANCH_NAME-$COMMIT_HASH" >> $env:GITHUB_ENV
+
+    - name: Upload Jar File
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}-${{ env.TAG_NAME }}
+        path: build/libs/${{ inputs.artifact-name }}.jar
