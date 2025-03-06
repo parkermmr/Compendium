@@ -20,7 +20,7 @@ on:
         type: string
         default: "main"
     secrets:
-      GITHUB_TOKEN:
+      TOKEN:
         required: true
 
 jobs:
@@ -68,5 +68,5 @@ jobs:
           distribution: ${{ inputs.distribution }}
           ref-name: ${{ inputs.ref-name }}
           sha: ${{ inputs.sha }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
   
