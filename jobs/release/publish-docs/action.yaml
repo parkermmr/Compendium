@@ -47,7 +47,7 @@ runs:
 
     - name: Build MkDocs Site (to pages subdirectory)
       shell: bash
-      run: poetry run mkdocs build --clean --site-dir site/pages
+      run: poetry run mkdocs build --clean
 
     - name: Configure Git for gh-pages
       shell: bash
@@ -63,7 +63,7 @@ runs:
     - name: Copy Javadocs to gh-pages root
       shell: bash
       run: |
-        cp -a /site/pages/. gh-pages/
+        cp -a ./site/. gh-pages/
 
     - name: Create .nojekyll in gh-pages
       shell: bash
