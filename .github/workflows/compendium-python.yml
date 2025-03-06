@@ -1,4 +1,4 @@
-name: Python Linting with Flake8
+name: Python Linting and Testing with Docker Build
 
 on:
   workflow_call:
@@ -7,6 +7,13 @@ on:
         required: false
         type: string
         default: "3.11"
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
 
 jobs:
   Lint:
@@ -14,16 +21,18 @@ jobs:
     steps:
       - uses: parkermmr/compendium/jobs/python/python-lint-flake8@v1
         with:
-          python-version: ${{ github.event.inputs.python-version }}
+          python-version: ${{ inputs.python-version }}
+
   Test:
     runs-on: ubuntu-latest
     steps:
       - uses: parkermmr/compendium/jobs/python/python-poetry-pytest@v1
         with:
-          python-version: ${{ github.event.inputs.python-version }}
+          python-version: ${{ inputs.python-version }}
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
+
   Build:
-    needs: ["Lint", "Test"]
+    needs: [Lint, Test]
     runs-on: ubuntu-latest
     steps:
       - uses: parkermmr/compendium/jobs/docker/build@v1

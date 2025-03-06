@@ -20,12 +20,12 @@ runs:
 
     - name: Build Docker Image
       shell: bash
-      run: docker build -t ${{ inputs.image-name }} .
+      run: docker build -t "${{ inputs.image-name }}" .
 
     - name: Login to DockerHub
       shell: bash
-      run: echo ${{ inputs.dockerhub-password }} | docker login -u ${{ inputs.dockerhub-username }} --password-stdin
+      run: echo "${{ inputs.dockerhub-password }}" | docker login -u "${{ inputs.dockerhub-username }}" --password-stdin
 
     - name: Push Docker Image
       shell: bash
-      run: docker push ${{ inputs.image-name }}
+      run: docker push "${{ inputs.image-name }}"
