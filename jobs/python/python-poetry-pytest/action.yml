@@ -72,10 +72,10 @@ runs:
         retention-days: 7
 
     - name: "Upload coverage to Codecov"
-      if: ${{ inputs.codecov_token != '' }}
+      if: ${{ inputs.codecov_token }}
+      shell: bash
       run: |
         pip install codecov
         codecov --token="${CODECOV_TOKEN}"
-      shell: bash
       env:
         CODECOV_TOKEN: ${{ inputs.codecov_token }}
