@@ -8,3 +8,4 @@ jobs:
       - uses: parkermmr/compendium/jobs/python/python-poetry-pytest@v1
         with:
           python-version: "3.11"
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

@@ -5,6 +5,9 @@ inputs:
     description: "Python version to use"
     required: true
     default: "3.11"
+  codecov_token:
+    description: "Codecov token"
+    required: false
 
 runs:
   using: "composite"
@@ -68,10 +71,11 @@ runs:
         path: reports/htmlcov/
         retention-days: 7
 
-    - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: reports/coverage.xml
-        fail_ci_if_error: true
-        verbose: true
+    - name: "Upload coverage to Codecov"
+      if: ${{ inputs.codecov_token != '' }}
+      run: |
+        pip install codecov
+        codecov --token="${CODECOV_TOKEN}"
+      shell: bash
+      env:
+        CODECOV_TOKEN: ${{ inputs.codecov_token }}
