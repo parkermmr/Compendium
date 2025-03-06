@@ -9,6 +9,12 @@ inputs:
   github-token:
     description: "GitHub Token for deployment"
     required: true
+  sha:
+    description: "SHA of the commit"
+    required: true
+  ref_name:
+    description: "Name of the branch"
+    required: true
 
 runs:
   using: "composite"
@@ -43,8 +49,31 @@ runs:
       shell: bash
       run: poetry run mkdocs build --clean --site-dir site/pages
 
-    - name: Deploy MkDocs to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ inputs.github-token }}
-        publish_dir: ./site
+    - name: Configure Git for gh-pages
+      shell: bash
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+
+    - name: Clone gh-pages branch
+      shell: bash
+      run: |
+        git clone --depth=1 --branch gh-pages https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }} gh-pages
+
+    - name: Copy Javadocs to gh-pages root
+      shell: bash
+      run: |
+        cp -a /site/pages/. gh-pages/
+
+    - name: Create .nojekyll in gh-pages
+      shell: bash
+      run: |
+        touch gh-pages/.nojekyll
+
+    - name: Deploy to GitHub Pages
+      shell: bash
+      run: |
+        cd gh-pages
+        git add .
+        git commit -m "Deploy MkDocs from ${{ inputs.sha }} on branch ${{ inputs.ref_name }}"
+        git push origin gh-pages
