@@ -23,7 +23,12 @@ on:
       config-file:
         required: false
         type: string
-        default: "parkermmr/compendium/jobs/security/secure/config.yml@main"
+        default: |
+          paths-ignore:
+            - '/usr/**'
+            - '**/venv/**'
+            - '**/.venv/**'
+            - '**/site-packages/**'
     secrets:
       CODECOV_TOKEN:
         required: false

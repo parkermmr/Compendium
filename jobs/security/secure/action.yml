@@ -3,30 +3,40 @@ description: "Robust, language-agnostic security scanning using CodeQL for stati
 
 inputs:
   languages:
-    description: "Comma-separated list of languages to analyze (e.g., 'javascript,python,cpp')."
+    description: "Languages to analyze (e.g., 'javascript,python')."
     required: false
-    default: "javascript,python,cpp"
+    default: "javascript,python"
   queries:
-    description: "Optional additional CodeQL queries (comma-separated paths or repo references)."
+    description: "Optional additional CodeQL queries."
     required: false
     default: ""
   config-file:
-    description: "Optional CodeQL configuration file content to customize paths to include or ignore."
+    description: "Optional CodeQL config YAML content."
     required: false
-    default: "parkermmr/compendium/jobs/security/secure/config.yml@v1"
+    default: |
+      paths-ignore:
+        - '/usr/**'
+        - '**/venv/**'
+        - '**/.venv/**'
+        - '**/site-packages/**'
 
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Create CodeQL config file
+      shell: bash
+      run: |
+        echo "${{ inputs.config-file }}" > codeql-config.yml
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ inputs.languages }}
         queries: ${{ inputs.queries }}
-        config-file: ${{ inputs.config-file }}
+        config-file: ./codeql-config.yml
 
     - name: Autobuild code
       uses: github/codeql-action/autobuild@v3
