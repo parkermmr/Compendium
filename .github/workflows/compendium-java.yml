@@ -19,6 +19,15 @@ on:
         required: false
         type: string
         default: "main"
+      config-file:
+        required: false
+        type: string
+        default: |
+          paths-ignore:
+            - '/usr/**'
+            - '**/classes/**'
+            - '**/target/**'
+            - '**/site/**'
     secrets:
       TOKEN:
         required: true
@@ -48,9 +57,21 @@ jobs:
         with:
           java-version: ${{ inputs.java-version }}
           distribution: ${{ inputs.distribution }}
-    
+
+  Secure:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - uses: parkermmr/compendium/jobs/security/secure@v1
+        with:
+          languages: "java"
+          config-file: ${{ inputs.config-file }}
+
   Tag:
-    needs: ["Test"]
+    needs: ["Test", "Secure"]
     runs-on: ubuntu-latest
     steps:
       - uses: parkermmr/compendium/jobs/release/deploy-tag@v1
