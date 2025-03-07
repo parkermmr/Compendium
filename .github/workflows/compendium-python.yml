@@ -20,6 +20,15 @@ on:
         type: string
         required: false
         default: "docker.io"
+      config-file:
+        required: false
+        type: string
+        default: |
+          paths-ignore:
+            - '/usr/**'
+            - '**/venv/**'
+            - '**/.venv/**'
+            - '**/site-packages/**'
     secrets:
       CODECOV_TOKEN:
         required: false
@@ -46,10 +55,15 @@ jobs:
   
   Secure:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     steps:
       - uses: parkermmr/compendium/jobs/security/secure@v1
         with:
           languages: "python"
+          config-file: ${{ inputs.config-file }}
 
   Build:
     needs: [Lint, Test]
@@ -63,4 +77,3 @@ jobs:
           sha: ${{ inputs.sha }}
           ref-name: ${{ inputs.ref-name }}
           registry: ${{ inputs.registry }}
-          
