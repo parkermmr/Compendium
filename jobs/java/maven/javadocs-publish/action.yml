@@ -17,6 +17,10 @@ inputs:
   github-token:
     required: true
     description: 'The GitHub token'
+  branch:
+    required: false
+    description: 'The branch to deploy to'
+    default: 'docs'
 
 runs:
   using: "composite"
@@ -36,31 +40,31 @@ runs:
       run: |
         mvn clean package source:jar javadoc:jar -DskipTests -Dpmd.skip=true -Dcheckstyle.skip=true
 
-    - name: Configure Git for gh-pages
+    - name: Configure Git for pages
       shell: bash
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
 
-    - name: Clone gh-pages branch
+    - name: Clone pages branch
       shell: bash
       run: |
-        git clone --depth=1 --branch gh-pages https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }} gh-pages
+        git clone --depth=1 --branch ${{ inputs.branch }} https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }} ${{ inputs.branch }}
 
-    - name: Copy Javadocs to gh-pages root
+    - name: Copy Javadocs to pages root
       shell: bash
       run: |
-        cp -a target/site/apidocs/. gh-pages/
+        cp -a target/site/apidocs/. ${{ inputs.branch }}/
 
-    - name: Create .nojekyll in gh-pages
+    - name: Create .nojekyll in pages
       shell: bash
       run: |
-        touch gh-pages/.nojekyll
+        touch ${{ inputs.branch }}/.nojekyll
 
     - name: Deploy to GitHub Pages
       shell: bash
       run: |
-        cd gh-pages
+        cd ${{ inputs.branch }}
         git add .
         git commit -m "Deploy Javadocs from ${{ inputs.sha }} on branch ${{ inputs.ref-name }}"
-        git push origin gh-pages
+        git push origin ${{ inputs.branch }}

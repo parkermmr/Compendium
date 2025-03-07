@@ -7,6 +7,19 @@ on:
         required: false
         type: string
         default: "3.11"
+      repo:
+        type: string
+        required: true
+      sha:
+        type: string
+        required: true
+      ref-name:
+        type: string
+        required: true
+      registry:
+        type: string
+        required: false
+        default: "docker.io"
     secrets:
       CODECOV_TOKEN:
         required: false
@@ -26,7 +39,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
-      - uses: parkermmr/compendium/jobs/python/python-poetry-pytest@v1
+      - uses: parkermmr/compendium/jobs/python/poetry/pytest@v1
         with:
           python-version: ${{ inputs.python-version }}
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
@@ -37,6 +50,10 @@ jobs:
     steps:
       - uses: parkermmr/compendium/jobs/docker/build@v1
         with:
-          image-name: "r3dsc0rp10n/test-image:latest"
           dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repo: ${{ inputs.repo }}
+          sha: ${{ inputs.sha }}
+          ref-name: ${{ inputs.ref-name }}
+          registry: ${{ inputs.registry }}
+          

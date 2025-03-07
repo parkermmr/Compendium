@@ -69,3 +69,4 @@ jobs:
           ref-name: ${{ inputs.ref-name }}
           sha: ${{ inputs.sha }}
           github-token: ${{ secrets.TOKEN }}
+          branch: 'gh-pages'

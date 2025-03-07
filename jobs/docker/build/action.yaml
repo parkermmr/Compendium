@@ -1,15 +1,25 @@
 name: "Build Docker Image"
-description: "Builds and pushes a Docker image to DockerHub"
+description: "Builds and pushes a Docker image to DockerHub with multiple tags"
 
 inputs:
-  image-name:
-    description: "Name of the Docker image to build (including tag)."
-    required: true
   dockerhub-username:
     description: "DockerHub username"
     required: true
   dockerhub-password:
     description: "DockerHub password"
+    required: true
+  registry:
+    description: "Docker registry to push the image to."
+    required: false
+    default: "docker.io"
+  ref-name:
+    description: "Name of the branch or tag to build the image from."
+    required: true
+  sha:
+    description: "SHA of the commit to build the image from."
+    required: true
+  repo:
+    description: "Name of the repository to build the image from."
     required: true
 
 runs:
@@ -18,14 +28,28 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build Docker Image
+    - name: Prepare Docker Tags
       shell: bash
-      run: docker build -t "${{ inputs.image-name }}" .
+      run: |
+        short_sha=$(echo "${{ inputs.sha }}" | cut -c1-6)
+        echo "tags=\
+        ${{ inputs.registry }}/${{ inputs.repo }}:latest \
+        ${{ inputs.registry }}/${{ inputs.repo }}:${{ inputs.sha }} \
+        ${{ inputs.registry }}/${{ inputs.repo }}:${{ inputs.ref-name }} \
+        ${{ inputs.registry }}/${{ inputs.repo }}:$short_sha" >> $GITHUB_ENV
 
-    - name: Login to DockerHub
+    - name: Build Docker Image with Tags
       shell: bash
-      run: echo "${{ inputs.dockerhub-password }}" | docker login -u "${{ inputs.dockerhub-username }}" --password-stdin
+      run: |
+        docker build $(echo "$tags" | sed 's/\([^ ]*\)/-t \1/g') .
 
-    - name: Push Docker Image
+    - name: Login to Registry
       shell: bash
-      run: docker push "${{ inputs.image-name }}"
+      run: echo "${{ inputs.dockerhub-password }}" | docker login -u "${{ inputs.dockerhub-username }}" --password-stdin "${{ inputs.registry }}"
+
+    - name: Push Docker Image Tags
+      shell: bash
+      run: |
+        for tag in $tags; do
+          docker push "$tag"
+        done

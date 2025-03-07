@@ -19,3 +19,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           sha: ${{ github.sha }}
           ref_name: ${{ github.ref }}
+          branch: 'gh-pages'
