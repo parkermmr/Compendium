@@ -65,6 +65,10 @@ runs:
       shell: bash
       run: |
         cd ${{ inputs.branch }}
+        if [[ -z $(git status --porcelain) ]]; then
+          echo "No changes to deploy. Skipping deployment."
+          exit 0
+        fi
         git add .
-        git commit -m "Deploy Javadocs from ${{ inputs.sha }} on branch ${{ inputs.ref-name }}"
+        git commit -m "Deploy MkDocs from ${{ inputs.sha }} on branch ${{ inputs.ref_name }}"
         git push origin ${{ inputs.branch }}
