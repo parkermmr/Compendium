@@ -13,12 +13,7 @@ inputs:
   config-file:
     description: "Optional CodeQL configuration file content to customize paths to include or ignore."
     required: false
-    default: |
-      paths-ignore:
-        - '/usr/**'
-        - '**/venv/**'
-        - '**/.venv/**'
-        - '**/site-packages/**'
+    default: "parkermmr/compendium/jobs/security/secure/config.yml@v1"
 
 runs:
   using: "composite"
