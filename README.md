@@ -1,5 +1,5 @@
 ![CI Status](https://github.com/TEAM-PIXL/PIXL-POS/actions/workflows/compendium.yml/badge.svg)
-[![Documentation](https://img.shields.io/badge/mkdocs-online-green)](compendium.io.pages.teampixl.info)
+[![Documentation](https://img.shields.io/badge/mkdocs-online-green)](https://compendium.io.pages.teampixl.info)
 
 # Compendium CI/CD Suite
 
