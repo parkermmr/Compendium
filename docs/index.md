@@ -1,4 +1,3 @@
-
 <style>
 body {
     margin: 0;
@@ -6,7 +5,6 @@ body {
     font-family: Arial, sans-serif;
     position: relative;
 }
-
 .watermark {
     position: fixed;
     top: 35%;
@@ -20,24 +18,20 @@ body {
     z-index: -1;
     pointer-events: none;
 }
-
 .headerTitle {
   font-size: 45px;
   text-align: center;
 }
-
 .tab {
   display: inline-block;
   margin-left: 40px;
 }
-
 #backdrop {
   padding: 100 0 100 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(100%);
@@ -47,36 +41,29 @@ body {
     width: 1px;
     white-space: nowrap;
 }
-
 .toc-list, .toc-list ol {
   list-style-type: none;
 }
-
 .toc-list {
   padding: 0;
 }
-
 .toc-list ol {
   padding-inline-start: 2ch;
 }
-
 .toc-list > li > a {
   font-weight: bold;
   margin-block-start: 1em;
 }
-
 .toc-list li > a {
     text-decoration: none;
     display: grid;
     grid-template-columns: auto max-content;
     align-items: end;
 }
-
 .toc-list li > a > .title {
     position: relative;
     overflow: hidden;
 }
-
 .toc-list li > a .leaders::after {
     position: absolute;
     padding-inline-start: .25ch;
@@ -89,7 +76,6 @@ body {
         ". . . . . . . . . . . . . . . . . . . . . . . ";
     text-align: right;
 }
-
 .toc-list li > a > .page {
     min-width: 2ch;
     font-variant-numeric: tabular-nums;
@@ -104,75 +90,67 @@ body {
 <h2>Table of Contents</h2>
 <ol class="toc-list" role="list">
   <li>
-    <a href="#Heading1">
-      <span class="title">Heading 1<span class="leaders" aria-hidden="true"></span></span>
+    <a href="#overview">
+      <span class="title">Overview<span class="leaders" aria-hidden="true"></span></span>
     </a>
-        <ol role="list">
-            <li>
-                <a href="#SubHeading1">
-                            <span class="title">Sub-Heading 1<span class="leaders" aria-hidden="true"></span>
-                </a>
-            </li>
-        </ol>
-    </li>
+    <ol role="list">
+      <li>
+        <a href="#compendium">
+          <span class="title">What is Compendium?<span class="leaders" aria-hidden="true"></span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#capabilities">
+          <span class="title">What are Compendium's capabilities?<span class="leaders" aria-hidden="true"></span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#who">
+          <span class="title">Who is Compendium for?<span class="leaders" aria-hidden="true"></span></span>
+        </a>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <a href="#technical">
+      <span class="title">Technical Details<span class="leaders" aria-hidden="true"></span></span>
+    </a>
+    <ol role="list">
+      <li>
+        <a href="#architecture">
+          <span class="title">Architecture<span class="leaders" aria-hidden="true"></span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#integrations">
+          <span class="title">Integrations<span class="leaders" aria-hidden="true"></span></span>
+        </a>
+      </li>
+    </ol>
+  </li>
 </ol>
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-<table class="tg"><thead>
-  <tr>
-    <th class="tg-0pky">Component</th>
-    <th class="tg-0pky">Purpose</th>
-  </tr></thead>
-<tbody>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/docker/build@v1</td>
-    <td class="tg-0pky">Build from Dockerfile and publish to registry.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/java/lint-checkstyle@v1</td>
-    <td class="tg-0pky">Lint using CheckStyle linting for java.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/java/gradle/build@v1</td>
-    <td class="tg-0pky">Build a JAR from java source with gradle.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/java/maven/compile@v1</td>
-    <td class="tg-0pky">Compile java code with maven.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/java/maven/test-junit@v1</td>
-    <td class="tg-0pky">Test java code with maven junit tests.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/java/maven/javadocs-publish@v1</td>
-    <td class="tg-0pky">Publish javadocs with Github pages and maven.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/release/deploy-tag@v1</td>
-    <td class="tg-0pky">Deploy a tag to GitHub on success of pipeline.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/release/publish-docs@v1</td>
-    <td class="tg-0pky">Publish mkdocs with GitHub pages.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/python/lint-flake8@v1</td>
-    <td class="tg-0pky">Lint python code to flake8, black, and isort standards.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/python/poetry-pytest@v1</td>
-    <td class="tg-0pky">Test python code using poetry as a package manager.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky">compendium/jobs/security/secure@v1</td>
-    <td class="tg-0pky">CodeQL security and vulnerability scan. </td>
-  </tr>
-</tbody></table>
+<h2 id="overview">Overview</h2>
+<p>Compendium is a comprehensive CI/CD suite designed to streamline your development and deployment workflows. It integrates seamlessly with your existing tools and automates key processes to increase efficiency.</p>
+
+<h3 id="compendium">What is Compendium?</h3>
+<p>Compendium is a modular CI/CD product that centralizes automation, monitoring, and deployment processes into one cohesive platform. It is built to handle complex workflows and offers scalability across various environments; while remaining simple, comprehensive, and user friendly.</p>
+
+<h3 id="capabilities">What are Compendium's capabilities?</h3>
+<p>The suite offers features including:</p>
+<ul>
+  <li>Continuous Integration and *Deployment</li>
+  <li>Automated Testing and Code Quality Analysis</li>
+  <li>*Monitoring and Logging</li>
+  <li>Scalability and Customizability</li>
+</ul>
+
+<h3 id="who">Who is Compendium for?</h3>
+<p>Designed for development teams, DevOps professionals, organizations, and individuals looking to optimize their software development lifecycle, Compendium caters to all ranges of development proffesionals.</p>
+
+<h2 id="technical">Technical Details</h2>
+<p>This section outlines the technical aspects of Compendium, including installation, configuration, and integration details. For further information, visit the <a href="https://github.com/parkermmr/Compendium" target="_blank">GitHub repository</a>.</p>
+
+<h3 id="architecture">Architecture</h3>
+
+<h3 id="integrations">Integrations</h3>

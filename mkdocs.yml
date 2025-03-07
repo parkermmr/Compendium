@@ -4,21 +4,46 @@ site_author: Parker Rennie
 site_url: https://parkermmr.github.io/compendium-ci-cd/
 nav:
   - Home: index.md
+  - Jobs:
+      - Docker:
+          - Build: Jobs/Docker/Build.md
+      - Java:
+          - Gradle:
+              - Build: Jobs/Java/Gradle/Build.md
+          - Lint Checkstyle: Jobs/Java/Lint Checkstyle.md
+          - Maven:
+              - Compile: Jobs/Java/Maven/Compile.md
+              - JUnit Test: Jobs/Java/Maven/JUnit Test.md
+              - Javadocs Publish: Jobs/Java/Maven/Javadocs Publish.md
+      - Python:
+          - Lint Flake8: Jobs/Python/Lint Flake8.md
+          - Poetry:
+              - Pytest: Jobs/Python/Poetry/Pytest.md
+      - Release:
+          - Deploy Tag: Jobs/Release/Deploy Tag.md
+          - Publish Docs: Jobs/Release/Publish Docs.md
+      - Security:
+          - Secure: Jobs/Security/Secure.md
+  - Pipelines:
+      - Java:
+          - Gradle: Pipelines/Java/Gradle.md
+          - Maven: Pipelines/Java/Maven.md
+      - Python: Pipelines/Python.md
 
 theme:
   name: material
-  favicon: 'img/favicon.svg'
-  logo: 'img/favicon.svg'
+  favicon: img/favicon.svg
+  logo: img/favicon.svg
   custom_dir: docs/overrides
   features:
     - header.autohide
     - search.suggest
     - content.footnote.tooltips
 
-  palette: 
+  palette:
     - scheme: default
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: Switch to dark mode
 
     - scheme: slate
@@ -53,7 +78,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.snippets:
-      base_path: ["."]
+      base_path: [.]
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
