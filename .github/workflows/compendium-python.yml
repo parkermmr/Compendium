@@ -56,7 +56,9 @@ jobs:
   Secure:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: read
+      security-events: write
     steps:
       - uses: parkermmr/compendium/jobs/security/secure@v1
         with:
