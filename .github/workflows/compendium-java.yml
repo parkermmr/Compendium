@@ -65,6 +65,10 @@ jobs:
       contents: read
       security-events: write
     steps:
+      - uses: actions/setup-java@v4
+        with:
+          distribution: ${{ inputs.distribution }}
+          java-version: ${{ inputs.java-version }}
       - uses: parkermmr/compendium/jobs/security/secure@v1
         with:
           languages: "java"
