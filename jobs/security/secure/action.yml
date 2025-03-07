@@ -1,0 +1,30 @@
+name: Secure
+description: "Robust, language-agnostic security scanning using CodeQL for static analysis and vulnerability detection."
+
+inputs:
+  languages:
+    description: "Comma-separated list of languages to analyze (e.g., 'javascript,python,cpp')."
+    required: false
+    default: "javascript,python,cpp"
+  queries:
+    description: "Optional additional CodeQL queries (comma-separated paths or repo references)."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ inputs.languages }}
+        queries: ${{ inputs.queries }}
+
+    - name: Autobuild code
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2

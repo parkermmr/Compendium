@@ -43,6 +43,13 @@ jobs:
         with:
           python-version: ${{ inputs.python-version }}
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
+  
+  Secure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: parkermmr/compendium/jobs/security/secure@v1
+        with:
+          languages: "python"
 
   Build:
     needs: [Lint, Test]
