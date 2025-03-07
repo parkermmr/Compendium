@@ -37,11 +37,6 @@ on:
       DOCKERHUB_PASSWORD:
         required: true
 
-permissions:
-  actions: read
-  contents: read
-  security-events: write
-
 jobs:
   Lint:
     runs-on: ubuntu-latest
