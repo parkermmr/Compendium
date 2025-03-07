@@ -15,3 +15,4 @@
 | **compendium/jobs/release/publish-docs@v1**        | Publish mkdocs with GitHub pages.                       |
 | **compendium/jobs/python/lint-flake8@v1**          | Lint python code to flake8, black, and isort standards. |
 | **compendium/jobs/python/poetry/pytest@v1**        | Test python code using poetry as a package manager.     |
+| **compendium/jobs/security/secure@v1**             | CodeQL security check for vulnerabilities               |
