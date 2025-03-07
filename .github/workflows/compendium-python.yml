@@ -55,6 +55,8 @@ jobs:
   
   Secure:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: parkermmr/compendium/jobs/security/secure@v1
         with:
