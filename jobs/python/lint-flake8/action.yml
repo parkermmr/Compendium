@@ -6,6 +6,10 @@ inputs:
     description: "Python version to use"
     required: true
     default: "3.11"
+  src-directory:
+    description: "The directory to run linting on."
+    required: false
+    default: "."
 
 runs:
   using: "composite"
@@ -42,15 +46,15 @@ runs:
 
     - name: Run Flake8 Linter (Generate Report)
       shell: bash
-      run: poetry run flake8 --exclude .venv --format=html --htmldir=reports/flake8
+      run: poetry run flake8 ${{ inputs.src-directory }} --exclude .venv --format=html --htmldir=reports/flake8
 
     - name: Run Black Formatter Check (Allow Failures)
       shell: bash
-      run: poetry run black --check --diff . || true
+      run: poetry run black ${{ inputs.src-directory }} --check --diff . || true
 
     - name: Run isort Import Sorting Check
       shell: bash
-      run: poetry run isort --check-only --diff .
+      run: poetry run isort ${{ inputs.src-directory }} --check-only --diff .
 
     - name: Upload Linting Results (Flake8 HTML Report)
       uses: actions/upload-artifact@v4
