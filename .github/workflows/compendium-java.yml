@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: "main"
+      docs-branch:
+        required: false
+        type: string
+        default: "gh-pages"
       config-file:
         required: false
         type: string
@@ -94,4 +98,4 @@ jobs:
           ref-name: ${{ inputs.ref-name }}
           sha: ${{ inputs.sha }}
           github-token: ${{ secrets.TOKEN }}
-          branch: 'gh-pages'
+          branch: ${{ inputs.docs-branch }}
