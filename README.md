@@ -63,17 +63,17 @@
 
 <p align="center">
   
-- [![Python][python]][python-url]
-- [![Git][git]][git-url]
-- [![GitHub Actions][github-actions]][github-actions-url]
-- [![Docker][docker]][docker-url]
-- [![Typescript][typescript-shield]]()
-- [![Javascript][javascript-shield]]()
-- [![React][react-shield]]()
-- [![Vite][vite-shield]]()
-- [![Java][java-shield]]()
-- [![Maven][maven-shield]]()
-- [![Gradle][gradle-shield]]()
+- [![Python][python-shield]][python-url]
+- [![Git][git-shield]][git-url]
+- [![GitHub Actions][github-actions-shield]][github-actions-url]
+- [![Docker][docker-shield]][docker-url]
+- [![Typescript][typescript-shield]][typescript-url]
+- [![Javascript][javascript-shield]][javascript-url]
+- [![React][react-shield]][react-url]
+- [![Vite][vite-shield]][vite-url]
+- [![Java][java-shield]][java-url]
+- [![Maven][maven-shield]][maven-url]
+- [![Gradle][gradle-shield]][gradle-url]
 
 </p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -116,10 +116,18 @@
 [issues-url]: https://github.com/parkermmr/compendium/issues
 [git-url]: https://git-scm.com/
 [docker-url]: https://www.docker.com/
-[compendium]: https://github.com/parkermmr/compendium
+[compendium-url]: https://github.com/parkermmr/compendium
 [docs-url]: https://compendium.pages.io.teampixl.info
 [python-url]: https://www.python.org/
 [github-actions-url]: https://github.com/features/actions
+[typescript-url]: https://www.typescriptlang.org/
+[javascript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[react-url]: https://react.dev/
+[vite-url]: https://vite.dev/
+[java-url]: https://www.java.com/en/
+[maven-url]: https://maven.apache.org/
+[gradle-url]: https://gradle.org/
+
 
 [contributors-shield]: https://img.shields.io/github/contributors/parkermmr/compendium.svg?style=for-the-badge
 [ci-shield]: https://img.shields.io/github/actions/workflow/status/parkermmr/compendium/publish.yml?branch=main&style=for-the-badge
@@ -134,14 +142,7 @@
 [java-shield]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
 [maven-shield]: https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white
 [gradle-shield]: https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white
-[python]: https://img.shields.io/badge/python-FFE873?style=for-the-badge&logo=python&logoColor
-[git]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white
-[github-actions]: https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=GitHub%20Actions&logoColor=white
-[docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
-[typescript-url]: https://www.typescriptlang.org/
-[javascript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-[react-url]: https://react.dev/
-[vite-url]: https://vite.dev/
-[java-url]: https://www.java.com/en/
-[maven-url]: https://maven.apache.org/
-[gradle-url]: https://gradle.org/
+[python-shield]: https://img.shields.io/badge/python-FFE873?style=for-the-badge&logo=python&logoColor
+[git-shield]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white
+[github-actions-shield]: https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=GitHub%20Actions&logoColor=white
+[docker-shield]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
