@@ -1,7 +1,7 @@
 site_name: Compendium CI/CD
 site_description: Documentation for Compendium CI/CD
 site_author: Parker Rennie
-site_url: https://parkermmr.github.io/compendium-ci-cd/
+site_url: https://compendium.pages.io.teampixl.info
 nav:
   - Home: index.md
   - Jobs:
