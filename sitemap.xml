@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Docker/Build/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Docker/Build/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Java/Lint%20Checkstyle/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Java/Lint%20Checkstyle/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Java/Gradle/Build/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Java/Gradle/Build/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Java/Maven/Compile/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Java/Maven/Compile/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Java/Maven/JUnit%20Test/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Java/Maven/JUnit%20Test/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Java/Maven/Javadocs%20Publish/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Java/Maven/Javadocs%20Publish/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Python/Lint%20Flake8/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Python/Lint%20Flake8/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Python/Poetry/Pytest/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Python/Poetry/Pytest/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Release/Deploy%20Tag/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Release/Deploy%20Tag/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Release/Publish%20Docs/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Release/Publish%20Docs/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Jobs/Security/Secure/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Jobs/Security/Secure/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Pipelines/Python/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Pipelines/Python/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Pipelines/Java/Gradle/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Pipelines/Java/Gradle/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
     <url>
-         <loc>https://parkermmr.github.io/compendium-ci-cd/Pipelines/Java/Maven/</loc>
-         <lastmod>2025-03-07</lastmod>
+         <loc>https://compendium.pages.io.teampixl.info/Pipelines/Java/Maven/</loc>
+         <lastmod>2025-03-26</lastmod>
     </url>
 </urlset>
