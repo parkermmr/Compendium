@@ -120,5 +120,5 @@
 [docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
 [docker-url]: https://www.docker.com/
 [compendium]: https://github.com/parkermmr/compendium
-[mkdocs-shield]: https://img.shields.io/badge/documentation-online-green?style=for-the-badge
+[mkdocs-shield]: https://img.shields.io/badge/docs-online-green?style=for-the-badge
 [docs-url]: https://compendium.pages.io.teampixl.info
