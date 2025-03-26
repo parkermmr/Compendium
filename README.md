@@ -109,7 +109,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-[ci-url]: https://github.com/parkermmr/kraken/actions/workflows/compendium.yml
+[ci-url]: https://github.com/parkermmr/compendium/actions/workflows/compendium.yml
 [contributors-url]: https://github.com/parkermmr/compendium/graphs/contributors
 [stars-url]: https://github.com/parkermmr/compendium/stargazers
 [forks-url]: https://github.com/parkermmr/compendium/network/members
