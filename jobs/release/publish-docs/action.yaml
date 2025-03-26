@@ -47,7 +47,7 @@ runs:
 
     - name: Ensure MkDocs & Material Theme are Installed
       shell: bash
-      run: poetry add mkdocs mkdocs-material
+      run: poetry add mkdocs mkdocs-material mkdocstrings-python mkdocs-markdownextradata-plugin markdown-grid-tables neoteroi-mkdocs mkdocs-glightbox
 
     - name: Build MkDocs Site (to pages subdirectory)
       shell: bash
