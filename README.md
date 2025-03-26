@@ -67,6 +67,13 @@
 - [![Git][git]][git-url]
 - [![GitHub Actions][github-actions]][github-actions-url]
 - [![Docker][docker]][docker-url]
+- [![Typescript][typescript-shield]]()
+- [![Javascript][javascript-shield]]()
+- [![React][react-shield]]()
+- [![Vite][vite-shield]]()
+- [![Java][java-shield]]()
+- [![Maven][maven-shield]]()
+- [![Gradle][gradle-shield]]()
 
 </p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,24 +108,40 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[ci-shield]: https://img.shields.io/github/actions/workflow/status/parkermmr/compendium/publish.yml?branch=main&style=for-the-badge
+
 [ci-url]: https://github.com/parkermmr/kraken/actions/workflows/compendium.yml
-[contributors-shield]: https://img.shields.io/github/contributors/parkermmr/compendium.svg?style=for-the-badge
 [contributors-url]: https://github.com/parkermmr/compendium/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/parkermmr/compendium.svg?style=for-the-badge
-[forks-url]: https://github.com/parkermmr/compendium/network/members
-[stars-shield]: https://img.shields.io/github/stars/parkermmr/compendium.svg?style=for-the-badge
 [stars-url]: https://github.com/parkermmr/compendium/stargazers
-[issues-shield]: https://img.shields.io/github/issues/parkermmr/compendium.svg?style=for-the-badge
+[forks-url]: https://github.com/parkermmr/compendium/network/members
 [issues-url]: https://github.com/parkermmr/compendium/issues
-[python]: https://img.shields.io/badge/python-FFE873?style=for-the-badge&logo=python&logoColor
-[python-url]: https://www.python.org/
-[git]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white
 [git-url]: https://git-scm.com/
-[github-actions]: https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=GitHub%20Actions&logoColor=white
-[github-actions-url]: https://github.com/features/actions
-[docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
 [docker-url]: https://www.docker.com/
 [compendium]: https://github.com/parkermmr/compendium
-[mkdocs-shield]: https://img.shields.io/badge/docs-online-green?style=for-the-badge
 [docs-url]: https://compendium.pages.io.teampixl.info
+[python-url]: https://www.python.org/
+[github-actions-url]: https://github.com/features/actions
+
+[contributors-shield]: https://img.shields.io/github/contributors/parkermmr/compendium.svg?style=for-the-badge
+[ci-shield]: https://img.shields.io/github/actions/workflow/status/parkermmr/compendium/publish.yml?branch=main&style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/parkermmr/compendium.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/parkermmr/compendium.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/parkermmr/compendium.svg?style=for-the-badge
+[mkdocs-shield]: https://img.shields.io/badge/docs-online-green?style=for-the-badge
+[typescript-shield]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[javascript-shield]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[react-shield]: https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white
+[vite-shield]: https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white
+[java-shield]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[maven-shield]: https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white
+[gradle-shield]: https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white
+[python]: https://img.shields.io/badge/python-FFE873?style=for-the-badge&logo=python&logoColor
+[git]: https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white
+[github-actions]: https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=GitHub%20Actions&logoColor=white
+[docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
+[typescript-url]: https://www.typescriptlang.org/
+[javascript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[react-url]: https://react.dev/
+[vite-url]: https://vite.dev/
+[java-url]: https://www.java.com/en/
+[maven-url]: https://maven.apache.org/
+[gradle-url]: https://gradle.org/
