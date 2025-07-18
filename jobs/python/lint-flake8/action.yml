@@ -38,7 +38,7 @@ runs:
 
     - name: Install Linter & Formatters
       shell: bash
-      run: poetry add --dev flake8 flake8-html black isort
+      run: poetry add --dev flake8 flake8-html black
 
     - name: Create Reports Directory
       shell: bash
@@ -51,10 +51,6 @@ runs:
     - name: Run Black Formatter Check (Allow Failures)
       shell: bash
       run: poetry run black --check --diff ${{ inputs.src-directory }} || true
-
-    - name: Run isort Import Sorting Check
-      shell: bash
-      run: poetry run isort --check-only --diff ${{ inputs.src-directory }}
 
     - name: Upload Linting Results (Flake8 HTML Report)
       uses: actions/upload-artifact@v4
